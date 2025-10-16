@@ -39,36 +39,28 @@ def Insetion_sort(array):
 
     return array
 
-def Quick_sort(array):
-    if len(array) > 1:
-        i = 0
-        j = len(array)
-        k = array[0]
+def Quick_sort(array, first_term, last_term):
+    if first_term < last_term :
+        i = first_term
+        j = last_term
+        k = array[first_term]
         while(i<j):
             while(True):
                 i = i+1
-                if i == len(array) or array[i]>k:
+                if i == last_term or array[i]>=k:
                     break
             while(True):
-                j = j-1
-                if j == 0 or array[j]<k:
+                if j == first_term or array[j]<=k:
                     break
+                else:
+                    j = j-1
             if i<j:
                 temp = array[i]
                 array[i] = array[j]
                 array[j] = temp
-        array[0] = array[j]
+        array[first_term] = array[j]
         array[j] = k
-        if j == 0:
-            return array
-        else:
-            Quick_sort(array[:j])
-        if j == len(array)-1:
-            return array
-        else:
-            Quick_sort(array[j+1:])
-
-    else:
-        return array
+        Quick_sort(array,first_term,j-1)
+        Quick_sort(array,j+1,last_term)
 
 
