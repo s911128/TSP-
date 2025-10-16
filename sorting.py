@@ -63,4 +63,28 @@ def Quick_sort(array, first_term, last_term):
         Quick_sort(array,first_term,j-1)
         Quick_sort(array,j+1,last_term)
 
+def Merge_sort(array, first_term, last_term):
+    if first_term < last_term:
+        merge_array = []
+        mid = (first_term+last_term)//2
+        Merge_sort(array, first_term, mid)
+        Merge_sort(array, mid+1, last_term)
+        i = first_term
+        j = mid+1
+        k = first_term
+        while(i<=mid and j<=last_term):
+            if array[i] <= array[j]:
+                list.append(merge_array, array[i])
+                i = i+1
+            else:
+                list.append(merge_array, array[j])
+                j = j+1
+        if i>mid:
+            list.extend(merge_array, array[j:last_term])
+        else:
+            list.extend(merge_array, array[i:mid+1])
+        for i in range(len(merge_array)):
+            array[first_term+i] = merge_array[i]
+
+
 
