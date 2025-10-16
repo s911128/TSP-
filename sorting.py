@@ -63,28 +63,29 @@ def Quick_sort(array, first_term, last_term):
         Quick_sort(array,first_term,j-1)
         Quick_sort(array,j+1,last_term)
 
-def Merge_sort(array, first_term, last_term):
-    if first_term < last_term:
+def Merge_sort(array):
+    if len(array) > 1:
+        mid = len(array)//2
+        left_array = Merge_sort(array[:mid])
+        right_array = Merge_sort(array[mid:])
+        i = 0
+        j = 0
         merge_array = []
-        mid = (first_term+last_term)//2
-        Merge_sort(array, first_term, mid)
-        Merge_sort(array, mid+1, last_term)
-        i = first_term
-        j = mid+1
-        k = first_term
-        while(i<=mid and j<=last_term):
-            if array[i] <= array[j]:
-                list.append(merge_array, array[i])
+        while(i < mid and j < len(right_array)):
+            if left_array[i] <= right_array[j]:
+                list.append(merge_array, left_array[i])
                 i = i+1
             else:
-                list.append(merge_array, array[j])
+                list.append(merge_array, right_array[j])
                 j = j+1
-        if i>mid:
-            list.extend(merge_array, array[j:last_term])
+        if i == mid:
+            list.extend(merge_array, right_array[j:])
         else:
-            list.extend(merge_array, array[i:mid+1])
-        for i in range(len(merge_array)):
-            array[first_term+i] = merge_array[i]
+            list.extend(merge_array, left_array[i:])
+        return merge_array
+        
+    else:
+        return array
 
 
 
