@@ -78,10 +78,10 @@ def Merge_sort(array):
             else:
                 list.append(merge_array, right_array[j])
                 j = j+1
-        if i == mid:
-            list.extend(merge_array, right_array[j:])
-        else:
+        if i < mid:
             list.extend(merge_array, left_array[i:])
+        else:
+            list.extend(merge_array, right_array[j:])
         return merge_array
         
     else:
