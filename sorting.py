@@ -14,19 +14,17 @@ def Bubble_sort(array):
     return array
 
 def Selection_sort(array):
-    temp = 0
     for i in range(len(array)-1):
-        smallest = i
+        smallest_index = i
+        minimum = array[i]
         for j in range(i+1,len(array)):
-            if array[j] < array[smallest]:
-                smallest = j
+            if array[j] < array[smallest_index]:
+                smallest_index = j
         
-        if i != smallest:
-            temp_smallest = array[smallest]
-            array[smallest] = array[i]
-            array[i] = temp_smallest
-
-    return array
+        if i != smallest_index:
+            minimum = array[smallest_index]
+            array[smallest_index] = array[i]
+            array[i] = minimum
 
 def Insetion_sort(array):
     for i in range(1,len(array)):

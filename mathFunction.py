@@ -12,21 +12,23 @@ def euclidean_distance(x1, x2):
     except Exception as e:
         print("兩點範數不同")
 
-def nearest_neighbor_tsp(matrix, start_node):
+def nearest_neighbor_tsp(matrix, start_node=0):
     route = [start_node]
-    not_visited_cities = [1,2,3]
+    unvisited_cities = set(range(len(matrix))) # 尚未訪問的城市集合
+    unvisited_cities.remove(start_node)
     k = start_node
-    while len(route) < 4:
-        next_node = not_visited_cities[0]
-        minimum = matrix[k][next_node]
-        for i in range(len(not_visited_cities)):
-            if minimum > matrix[k][not_visited_cities[i]]:
-                next_node = not_visited_cities[i]
-                minimum = matrix[k][next_node]
+    total_distance = 0.0
+    while unvisited_cities:
+        minimum = math.inf
+        next_node = k
+        for node in unvisited_cities:
+            if minimum > matrix[k][node]:
+                next_node = node
+                minimum = matrix[k][node]
         k = next_node
-
         list.append(route, k)
-        list.remove(not_visited_cities,k)
+        unvisited_cities.remove(k)
+        total_distance = total_distance + minimum
         
     
     return route
